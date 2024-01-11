@@ -379,8 +379,8 @@ importers:
         specifier: ^16.0.0
         version: 16.0.0(postcss@8.4.33)
       postcss-load-config:
-        specifier: ^4.0.2
-        version: 4.0.2(postcss@8.4.33)(ts-node@10.9.2)
+        specifier: ^5.0.2
+        version: 5.0.2(postcss@8.4.33)
       postcss-modules:
         specifier: ^6.0.0
         version: 6.0.0(postcss@8.4.33)
@@ -1919,6 +1919,7 @@ packages:
   /@babel/highlight@7.23.4:
     resolution: {integrity: sha512-acGdbYSfp2WheJoJm/EBBBLh/ID8KDc64ISZ9DYtBmC8/Q204PZJLHyzeB5qMzJ5trcOkybd78M4x2KWsUq++A==}
     engines: {node: '>=6.9.0'}
+    requiresBuild: true
     dependencies:
       '@babel/helper-validator-identifier': 7.22.20
       chalk: 2.4.2
@@ -7915,6 +7916,23 @@ packages:
       postcss: 8.4.33
       ts-node: 10.9.2(@types/node@20.11.0)(typescript@5.2.2)
       yaml: 2.3.4
+
+  /postcss-load-config@5.0.2(postcss@8.4.33):
+    resolution: {integrity: sha512-Q8QR3FYbqOKa0bnC1UQ2bFq9/ulHX5Bi34muzitMr8aDtUelO5xKeJEYC/5smE0jNE9zdB/NBnOwXKexELbRlw==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      jiti: '>=1.21.0'
+      postcss: '>=8.0.9'
+    peerDependenciesMeta:
+      jiti:
+        optional: true
+      postcss:
+        optional: true
+    dependencies:
+      lilconfig: 3.0.0
+      postcss: 8.4.33
+      yaml: 2.3.4
+    dev: true
 
   /postcss-modules-extract-imports@3.0.0(postcss@8.4.33):
     resolution: {integrity: sha512-bdHleFnP3kZ4NYDhuGlVK+CMrQ/pqUm8bx/oGL93K6gVwiclvX5x0n76fYMKuIGKzlABOy13zsvqjb0f92TEXw==}
