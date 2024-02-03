@@ -197,10 +197,76 @@ You can set the `DEBUG` environment variable to turn on debugging logs (e.g. `DE
 
 ### Issue Triaging Workflow
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./.github/issue-workflow-dark.png">
-  <img src="./.github/issue-workflow.png">
-</picture>
+```mermaid
+---
+title: Issue Triaging Workflow
+---
+%%{init: {"flowchart": {"defaultRenderer": "elk"}} }%%
+flowchart TD
+  1{"Followed issue template?"}
+  2a{"Is duplicate?"}
+  2b["Close and ask to follow template"]
+  3a{"Has proper reproduction?"}
+  3b["Close and point to duplicate"]
+  4a{"Is it actually a bug?"}
+  4b["
+    Label: &quot;needs reproduction&quot;
+
+    bot will auto close if no update
+    has been made in 3 days
+  "]
+  5a["
+    1. Remove &quot;pending triage&quot; label
+    2. Add &quot;bug&quot; label
+    3. Add related feature label if applicable
+    &nbsp;&nbsp;&nbsp;&nbsp;(e.g. &quot;bug: ssr&quot; or &quot;plugin: vue&quot;)
+    4. Add priority label (see below)
+  "]
+  style 5a text-align:left
+  5b{"Is the behavior intended?"}
+  6a{"Does the bug make vite unusable?"}
+  6b["
+    <strong>Explain and close</strong>
+
+    point to docs if needed
+  "]
+  6c["
+    <strong>Keep open for discussion</strong>
+
+    Remove &quot;pending triage&quot; label
+  "]
+  7a{"Does the bug affect the majority of users?"}
+  7b{"Are there workarounds for the bug?"}
+  8a["p5: urgent"]
+  8b["p4: important"]
+  8c["p3: has workaround"]
+  8d["p2: minor bug"]
+
+  1 --> |YES| 2a
+  1 --> |NO| 2b
+
+  2a --> |NO| 3a
+  2a --> |YES| 3b
+
+  3a --> |YES| 4a
+  3a --> |NO| 4b
+  
+  4a --> |YES| 5a
+  4a --> |NO| 5b
+
+  5a --> 6a
+  5b --> |YES| 6b
+  5b --> |NO| 6c
+
+  6a --> |YES| 7a
+  6a --> |NO| 7b
+
+  7a --> |YES| 8a
+  7a --> |NO| 8b
+
+  7b --> |YES| 8c
+  7b --> |NO| 8d
+```
 
 ### Pull Request Review Workflow
 
